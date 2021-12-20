@@ -1,0 +1,12 @@
+# aplikasi mysql ke webserver (di master)
+## buat database
+mysql -u root -p
+mysql> CREATE DATABASE user_db;
+
+## buat user
+mysql> CREATE USER 'aulia'@'%' IDENTIFIED BY 'Aulia123!';
+mysql> GRANT ALL PRIVILEGES ON user_db.* TO 'aulia'@'%' IDENTIFIED BY 'Aulia123!';
+mysql> FLUSH PRIVILEGES;
+
+## cek user yang telah dibuat
+SELECT user,authentication_string,plugin,host FROM mysql.user;

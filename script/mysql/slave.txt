@@ -1,0 +1,27 @@
+# konfigurasi replikasi pada slave
+## hapus file /var/lib/mysql/auto.cnf
+sudo rm -f /var/lib/mysql/auto.cnf
+
+## restart mysql
+sudo systemctl restart mysql
+
+## ubah file konfigurasi
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+## ubah bind menjadi 0.0.0.0 dan masukkan konfigurasi beriku pada file tsb
+bind-address	= 0.0.0.0
+server-id       = 2
+log_bin         = /var/log/mysql/mysql-bin.log
+
+## restart dan cek status mysql
+sudo systemctl restart mysql
+sudo systemctl status mysql
+
+## mengubah master untuk slave (sesuai konfigurasi pada master sebelumnya)
+mysql -u root -p
+mysql> STOP SLAVE;
+mysql> CHANGE MASTER TO MASTER_HOST='10.0.0.151', MASTER_USER='replica', MASTER_PASSWORD='Replica123!', MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=619;
+mysql> START SLAVE;
+
+## cek status slave (cek error dll)
+SHOW SLAVE STATUS\G

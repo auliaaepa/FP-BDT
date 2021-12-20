@@ -1,0 +1,16 @@
+# instalansi pada master dan slave
+## install
+sudo apt-get update -y
+sudo apt-get install mysql-server -y
+sudo systemctl start mysql
+sudo systemctl enable mysql
+
+## konfigurasi mysql secure installantion
+sudo mysql_secure_installation
+
+## ubah autentifikasi user root menjadi native password
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Aulia123!';
+FLUSH PRIVILEGES;
+
+## cek hasil pengubahan autentifikasi
+SELECT user,authentication_string,plugin,host FROM mysql.user;

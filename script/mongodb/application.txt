@@ -1,0 +1,10 @@
+# aplikasi mongodb ke webserver
+## klik connect
+
+## buat user
+
+## gunakan ip 0.0.0.0
+
+## pilih koneksi ke aplikasi (driver php dan versi terbaru)
+
+## salin url serta sesuaikan password dan default database yang digunakan

@@ -1,0 +1,44 @@
+# installansi webserver
+## install xampp dan composer
+
+## buat project laravel
+composer create-project laravel/laravel fp-bdt
+
+## install MongoDB PHP driver (.dll) dan letakkan dalam folder C:\xampp\php\ext
+https://pecl.php.net/package/mongodb/1.12.0/windows
+
+## tambahkan konfigurasi berikut pada php.ini
+extension=php_mongodb.dll
+
+## install mongodb package untuk laravel
+composer require jenssegers/mongodb
+
+## tambahkan konfigurasi berikut pada providers di konfigurasi app (config/app.php)
+Jenssegers\Mongodb\MongodbServiceProvider::class,
+
+## sesuaikan .env dengan data database yang ada (host, user, dll)
+DB_CONNECTION=mysql
+DB_HOST=3.239.25.78
+DB_PORT=3306
+DB_DATABASE=user_db
+DB_USERNAME=aulia
+DB_PASSWORD=Aulia123!
+
+MONGODB_DSN=mongodb+srv://aulia:aulia123@cluster05111940000044.q9hnk.mongodb.net/sample_training?retryWrites=true&w=majority
+MONGODB_DATABASE=sample_training
+
+## tambahkan connection ke mongodb pada konfigurasi database (config/database.php)
+'connections' => [
+    ...
+    
+    'mongodb' => [
+        'driver' => 'mongodb',
+        'dsn' => env('MONGODB_DSN'),
+        'database' => env('MONGODB_DATABASE'),
+    ],
+],
+
+## buat aplikasi
+
+## migrate untuk tabel user di mysql
+php artisan migrate

@@ -1,0 +1,4 @@
+# membuat database pada mongodb atlas
+## login
+## buat server default (replikasi 3) dengan nama Cluster05111940000044
+## browse collection dan load sample database

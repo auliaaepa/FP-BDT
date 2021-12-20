@@ -1,0 +1,20 @@
+# konfigurasi replikasi pada master
+## ubah file konfigurasi
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+
+## ubah bind menjadi 0.0.0.0 dan masukkan konfigurasi beriku pada file tsb
+bind-address	= 0.0.0.0
+server-id       = 1
+log_bin         = /var/log/mysql/mysql-bin.log
+
+## restart dan cek status mysql
+sudo systemctl restart mysql
+sudo systemctl status mysql
+
+## menambahkan user untuk replikasi
+mysql -u root -p
+mysql> CREATE USER 'replica'@'10.0.0.186' IDENTIFIED BY 'Replica123!';
+mysql> GRANT REPLICATION SLAVE ON *.* TO 'replica'@'10.0.0.186';
+
+## cek status master (akan menjadi iinput untuk konfigurasi slave)
+SHOW MASTER STATUS\G
