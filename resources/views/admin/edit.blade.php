@@ -11,6 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.tag', ['id' => $post->_id]) }}">Tags</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.comment', ['id' => $post->_id]) }}">Comments</a>
+                </li>
             </ul>
         </div>
         <div class="card-body">
